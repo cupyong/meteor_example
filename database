@@ -1,0 +1,255 @@
+
+
+//用户表
+user:{
+  _id:"objectId",
+  openId:"asdasdasdf",
+  wxname:"张三",
+  sex:0,
+  province:"北京",
+  city:"北京",
+  headurl:""//微信头像
+  phone:'用户手机号码'
+  redstatus:"红包发送状态"   //SENDING 发放中  SENT:已发放待领取  FAILED：发放失败 RECEIVED:已领取 REFUND:已退款
+  commonanswer:{  //对应常见问题的答案 带规定完善
+      sex:{
+         answer:1,
+         time:123122
+      },
+      age:{
+         answer:28,
+         time:123122
+      },
+      place:{
+          answer:"北京市海淀区",
+          time:123122
+      },
+       phone:{
+          answer:"13501238926",
+          time:123122
+       },
+       idcard:{
+          answer:"1235361666",
+          time:123122
+       },
+          profession:{
+                 answer:"职业",
+                 time:123122
+              },
+
+     income:{
+                     answer:"1",
+                     time:123122
+                  },
+     marriage:{
+           answer:"1",
+           time:123122
+    },
+
+  }
+}
+
+//问卷表
+questionnaires:{
+    _id:"objectId",
+    openId:1,
+    title:"问卷1",
+    describe:"问卷描述",
+    maxCount:200, //设置问卷最大回答数量
+    sort_questions:['_id','_id','_id','_id']
+    status :0  //关闭开启 等相关状态  0：初始化 1：发布中 2 完成状态  -1 表示删除 -1 表示取消的问卷
+    level:0 //普通问卷 1//拼手气红包 //2普通红包
+    money:0//总金额,
+    singlemoney:0//单份问卷的金额
+    allow:false//是否允许答题者查看答案
+    share:1;//是否推广问卷 0表示未推广 1表示推广
+}
+
+
+//需要新增常见问题的基础内容  方便统一关于所以用单独的表来管理
+commonquestions:[
+  {
+        _id:"objectId",
+        name:"",//常见问题名称  sex  age address  phone  idcard profession income marriage
+        type:1 //  1单选题 2多选题 3 排序题 4 填空题 5 评分题
+        title:"问题标题",
+        must:false,是否必填项
+        options:[ //选项
+            {
+                key:1,
+                content:"选择题一",
+                link:null,//问题跳转的id
+            }
+        ]
+         issue:{
+            other_option:true,
+            no_option:true,
+            placeholder:"提示内容",
+            min_value:"最小数",
+            choice_limit:true,//设置可选数量
+            min_choice:0,//最少选择项
+            max_choice:1,//最多选择项目
+            is_rand:true,//是否乱序
+            is_limit:true,//字数现在是否
+            onlynum:true,//只能输入数字
+         }
+
+  }
+]
+
+//问题表
+questions:[
+{
+       _id:"objectId",
+       questionnaire_id:questionnaires._id, //关联问卷
+       type:1,//  1单选题 2多选题 3 排序题 4 填空题 5 评分题
+       title:"问题标题",
+       common:false,//是否是常见问题
+       must:false,是否必填项
+       options:[ //选项
+           {
+               key:1,
+               content:"选择题一",
+               link:null,//问题跳转的id
+           }
+       ]
+        issue:{
+           other_option:true,
+           no_option:true,
+           placeholder:"提示内容",
+           min_value:"最小数",
+           choice_limit:true,//设置可选数量
+           min_choice:0,//最少选择项
+           max_choice:1,//最多选择项目
+           is_rand:true,//是否乱序
+           is_limit:true,//字数限制是否
+           onlynum:true,//只能输入数字
+        }
+}
+]
+
+//答案表
+answer:[
+{
+    _id:"objectId",
+    question_id:question_id, //关联问题
+    questionnaire_id:questionnaire_id //关联问卷
+    has_answer:true,//是否回答
+    type:1,//  1单选题 2多选题 3 排序题 4 填空题 5 评分题
+    answer:{
+        key:1  //options中的key 单选题答案
+        other_content:"其他答案"
+        orders:[1,2]//评分题答案
+        other_option:"其他答案"
+        other_select:true
+        no_option：true; 其他答案
+        content:"填空题答案"
+        score:{"1":3} //评分题答案
+
+    }
+   commonanswer:true;
+   wxname："张三"
+   createTime:'2015-8-1'
+   openId:"openId",
+
+}
+]
+//token表
+token：{
+    _id:"access_token",
+    "access_token":"access_token",
+    time:"201-8-9 10:10:10"
+}
+
+{
+    _id:"jsapi_ticket",
+    "jsapi_ticket":"jsapi_ticket",
+    time:"201-8-9 10:10:10"
+}
+
+//用户答题表
+useranswer:{
+    _id:"objectId",
+    openId:"openId",
+    complete:ture,//false
+    red:true,//是否领取红包
+    money:10,//红包金额
+    questionnaire_id:questionnaire_id//回答的问卷
+    question_id:question_id//最后一个完成回答的题目
+    complete_time:complete_time //最后答题的时间
+    type:"normal",//normal表示正常 delete 表示超时删除的
+}
+
+//分享被点击
+shareclick:{
+     _id:"objectId",
+     shareopenid:'openId',
+     clickopenId:'openid'
+     questionnaire_id:questionnaire_id//问卷
+     time:"201-8-9 10:10:10"
+}
+//分享被完成回答
+sharecomplete:{
+     _id:"objectId",
+     shareopenid:'openId',
+     completeopenId:'openid',
+     questionnaire_id:questionnaire_id//问卷
+     time:"201-8-9 10:10:10"
+}
+
+//回答问题获取的红包记录
+answerred:{
+  _id:"objectId",
+  openId:'openId',
+  questionnaire_id:questionnaire_id//问卷
+  money:1.00,
+  status:"红包发送状态"   //SENDING 发放中  SENT:已发放待领取  FAILED：发放失败 RECEIVED:已领取 REFUND:已退款
+  time:"201-8-9 10:10:10"
+}
+
+//提现记录
+sharemoney:{
+  _id:"objectId",
+  openid:'openId',
+  money:0.5,
+  time:"2010-8-9 10:10:10"
+}
+
+//邀请红包
+invitation:{
+  _id:"objectId",
+  openid:"openId",
+  money:1,
+  beopenid:"openId",
+  status:"红包发送状态"   //SENDING 发放中  SENT:已发放待领取  FAILED：发放失败 RECEIVED:已领取 REFUND:已退款
+  time:"2010-8-9 10:10:10"
+}
+
+//支付红包等相关记录
+payorder:{
+  //微信必须的参数
+  status :0//状态  0表示初始状态 -1表示未成功 1 表示成功
+  questionnaireid:asdada//问卷
+  beopenId:"beopenId";//被推广的用户
+  type :1// 1表示充值  2 表示发红包（回答问卷和问卷相关的）  3//表示退款  4:收到领取红包（不绑定问卷） 5:邀请好友红包  6 绑定手机红包
+}
+
+
+qrcode:{
+  //二维码推广
+  scene_id:111 //场景值ID
+  ticket:"gQH47joAAAAAAAAAASxodHRwOi8vd2VpeGluLnFxLmNvbS9xL2taZ2Z3TVRtNzJXV1Brb3ZhYmJJAAIEZ23sUwMEmm3sUw=="; //关注标示
+  url:http:\/\/weixin.qq.com\/q\/kZgfwMTm72WWPkovabbI  //用来生成二维码
+  openId:用户openId
+
+}
+
+
+
+
+
+
+
+
+
+

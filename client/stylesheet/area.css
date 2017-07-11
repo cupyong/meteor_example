@@ -1,0 +1,25 @@
+﻿.dqld_div{
+    width:100%;
+    background-color:#fff;
+
+}
+
+.dqld_div ul{
+    width:100%;
+}
+
+.dqld_div ul li{
+    height:35px;
+    line-height:35px;
+    border-bottom:1px solid #cccccc;
+    padding-left:10px;
+}
+.address_input{
+    margin-left:35px;
+    margin-bottom:26px;
+    margin-top:10px;
+}
+.address_input1{
+    border:1px solid #cccccc;
+    height:28px;
+}

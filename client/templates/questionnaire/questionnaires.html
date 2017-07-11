@@ -1,0 +1,48 @@
+<template name="questionnaires">
+    <div class="community">
+    <header class="edited answer">
+        <div id="survey-title">
+            <div class="survey-name">
+                <h2 class="title">调研社区</h2>
+            </div>
+        </div>
+    </header>
+
+    <ul class="survey-list">
+         {{#each questionnaires}}
+              {{> questionnaires_item}}
+         {{/each}}
+
+    </ul>
+    </div>
+
+    <!--<div class="">问卷调查</div>-->
+    <!--<div class="question page">-->
+        <!--<div class="">-->
+            <!--{{#each questionnaires}}-->
+                <!--{{> questionnaireItem}}-->
+            <!--{{/each}}-->
+        <!--</div>-->
+    <!--</div>-->
+    <!--{{#if nextPath}}-->
+        <!--<a class="load-more" href="{{nextPath}}">more</a>-->
+    <!--{{else}}-->
+        <!--{{#unless ready}}-->
+            <!--{{> spinner}}-->
+        <!--{{/unless}}-->
+    <!--{{/if}}-->
+</template>
+
+<template name="questionnaires_item">
+    <li>
+        <a href="{{pathFor 'questionnairedetail'}}" class="survey-name">{{title}}</a>
+        <span class="time">发起时间 {{publish_time}}</span>
+        <span class="collect">已收集 <i>{{getAnswerNum _id}}</i> / {{maxCount}} 份</span>
+    </li>
+    <!--<div class="question">-->
+        <!--<a href="{{pathFor 'questionnairedetail'}}">{{title}}  </a>-->
+    <!--</div>-->
+    <!--<div>-->
+        <!--发起时间：{{publishTime}}  已收集{{answerCount}}/{{maxCount}}-->
+    <!--</div>-->
+</template>

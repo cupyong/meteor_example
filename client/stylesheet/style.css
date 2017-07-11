@@ -1,0 +1,198 @@
+@font-face {
+	font-family: 'icomoon';
+	src:url('/fonts/icomoon.eot?-y3qe3p');
+	src:url('/fonts/icomoon.eot?#iefix-y3qe3p') format('embedded-opentype'),
+		url('/fonts/icomoon.ttf?-y3qe3p') format('truetype'),
+		url('/fonts/icomoon.woff?-y3qe3p') format('woff'),
+		url('/fonts/icomoon.svg?-y3qe3p#icomoon') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+	font-family: 'icomoon';
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+
+	/* Better Font Rendering =========== */
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.icon-multiple-choice:before {
+	content: "\e600";
+}
+.icon-exclamation-circle:before {
+	content: "\e601";
+}
+.icon-envelope-o:before {
+	content: "\e602";
+}
+.icon-check-circle:before {
+	content: "\e603";
+}
+.icon-share-square-o:before {
+	content: "\e604";
+}
+.icon-bind:before {
+	content: "\e605";
+}
+.icon-invite:before {
+	content: "\e606";
+}
+.icon-promote:before {
+	content: "\e607";
+}
+.icon-answer:before {
+	content: "\e608";
+}
+.icon-chevron-right:before {
+	content: "\e609";
+}
+.icon-end:before {
+	content: "\e60a";
+}
+.icon-promoted:before {
+	content: "\e60b";
+}
+.icon-promotion:before {
+	content: "\e60c";
+}
+.icon-arrow-circle-right:before {
+	content: "\e60d";
+}
+.icon-arrow-right:before {
+	content: "\e60e";
+}
+.icon-check:before {
+	content: "\e60f";
+}
+.icon-toggle-off_1:before {
+	content: "\e610";
+}
+.icon-envelope:before {
+	content: "\e611";
+}
+.icon-refresh:before {
+	content: "\e612";
+}
+.icon-pie-chart:before {
+	content: "\e613";
+}
+.icon-share:before {
+	content: "\e614";
+}
+.icon-caret-up:before {
+	content: "\e615";
+}
+.icon-caret-down:before {
+	content: "\e616";
+}
+.icon-toggle-on:before {
+	content: "\e617";
+}
+.icon-toggle-off:before {
+	content: "\e618";
+}
+.icon-star_1:before {
+	content: "\e619";
+}
+.icon-blank:before {
+	content: "\e61a";
+}
+.icon-list-ol:before {
+	content: "\e61b";
+}
+.icon-radiobuttonlist:before {
+	content: "\e61c";
+}
+.icon-chevron-up:before {
+	content: "\e61d";
+}
+.icon-star:before {
+	content: "\e61e";
+}
+.icon-4:before {
+	content: "\e61f";
+}
+.icon-3:before {
+	content: "\e620";
+}
+.icon-2:before {
+	content: "\e621";
+}
+.icon-1:before {
+	content: "\e622";
+}
+.icon-trash:before {
+	content: "\e623";
+}
+.icon-sort:before {
+	content: "\e624";
+}
+.icon-logicalcontrol:before {
+	content: "\e625";
+}
+.icon-copy:before {
+	content: "\e626";
+}
+.icon-pencil:before {
+	content: "\e627";
+}
+.icon-check-square .path1:before {
+	content: "\e628";
+	color: rgb(223, 223, 223);
+}
+.icon-check-square .path2:before {
+	content: "\e629";
+	margin-left: -1em;
+	color: rgb(77, 77, 77);
+}
+.icon-square:before {
+	content: "\e62a";
+}
+.icon-times:before {
+	content: "\e62b";
+}
+.icon-times-circle:before {
+	content: "\e62c";
+}
+.icon-chevron-down:before {
+	content: "\e62d";
+}
+.icon-marriage:before {
+	content: "\e62e";
+}
+.icon-income:before {
+	content: "\e62f";
+}
+.icon-briefcase:before {
+	content: "\e630";
+}
+.icon-id:before {
+	content: "\e631";
+}
+.icon-phone:before {
+	content: "\e632";
+}
+.icon-map-marker:before {
+	content: "\e633";
+}
+.icon-birthday-cake:before {
+	content: "\e634";
+}
+.icon-gender:before {
+	content: "\e635";
+}
+.icon-plus:before {
+	content: "\e636";
+}
+.icon-plus-circle:before {
+	content: "\e637";
+}
+
+

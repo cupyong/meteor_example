@@ -1,0 +1,68 @@
+客户端业务逻辑
+stylesheet 样式文件
+    相关问卷
+       animate.css 动画效果
+       area.css 地区
+       base.css  基础
+       bootstrap.input.css  radio check 样式
+       generic.inputs.css  是否选择样式
+       questionniare.scss 样式
+
+templates 主要页面结构
+    application 全局的页面 用于在路由中配置
+    includes 公用的页面控件
+    questionnaire  问卷调研页面的基本功能
+        1：调研中心
+        2：分享问卷
+        3：问卷页面
+        4：邀请好友
+        相关文件
+             home.jsx         入口处
+             home_index.jsx   调研中心
+             home_single.jsx  单个问卷（回答问题记录 红包领取记录等）
+             invitation.html  推荐他人关注微信公众号
+             qrcode.jsx       微信公众号二维码ye
+             questionnaire.jsx 单个问卷的问题列表
+             questionnaire_detail.jsx 问题详细页面
+             share.jsx.jsx       分享页面
+             sharecenter.jsx    推广中心
+   questions 问卷的页面
+
+    users 个人中心 个人问卷等相关页面
+         1：发布问卷
+         2：编辑问卷
+         3：绑定手机
+         4：我的红包
+         5：管理问卷（问卷管理以及问卷问题的管理编辑和修改）
+         相关文件
+                bindphone.jsx  绑定手机
+                myquestionblogic.jsx  我的问卷中问题的逻辑控制入口
+                myqyestionnaires.jsx  我的问卷列表 和相关的操作
+                myquestionprew.jsx    我的问卷预览页面入口
+                myquestionred.jsx     我的问卷红包的设置入口
+                myquestionresult.jsx  我的问卷结果页面入口
+                myquestions.jsx       我的问卷问题列表入口
+                myquestionsort.jsx    我的问卷问题排序入口
+                myred.jsx             我的红包（个人领取红包记录）
+                myredrecord.jsx       我的问卷的红包领取记录
+                mysinglequestion      问卷问题的5种类型显示
+                publish_questionnaire 发布我的问卷
+                question_edit.jsx     编辑我的问题
+                question_list.jsx     我的问卷问题列表
+                question_logic        我的问卷的逻辑控制
+                question_preview.jsx  我的问卷预览页面的相关操作
+                question_select.jsx   我的问卷新增问题类型的选择
+                question_sort.jsx     我的问卷问题排序逻辑
+                question_type.jsx     问卷问题的类型和常用问题
+                questionnaire_red.jsx   我的问卷红包的设置（手气红包 普通红包）
+                questionnaire_result.jsx 问卷的结果页面（导出和图表）
+
+ touch.js 用来排序的js
+ wechat.js  微信相应的js
+ cookies.js cookie相关的js
+ urlparse.js 解析url相关操作
+ area.js  地区选择相关的js
+
+
+
+

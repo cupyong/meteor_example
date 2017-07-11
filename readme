@@ -1,0 +1,207 @@
+host = http://xxx.com:3000
+
+基本页面
+调研中心：host
+发布问卷：host/user/publishquestionnaire
+我的问卷 :host/user/myquestionlist/
+我的红包：host/user/myred
+绑定手机 ：host/user/bindphone
+推广中心 :host/sharecenter
+邀请好友关注 host/invitation
+
+
+功能介绍
+1：调研中心
+   进入问卷页面查询{status:1} （正在收集的问卷） 并且是红包问卷 (红包总金额大于1元的)
+        显示问卷的收集总数 和已经收集的数量
+
+   点击某个问卷进入问卷页面
+        如果是红包问卷并且有人回答领取的红包就显示红包领取记录
+        如果不是就显示问卷答题者的记录
+   开始是否回答问卷内容
+
+        1：查看该用户回答该问卷内容是否过期如果过期那么 提示已经过期需要重新回答
+
+        2：如果是没有回答过 那么从开始回答
+
+        3：如果已经回答过并且未过期 那么从已经回答的问题下一题开始显示并回答
+
+
+        开始答题
+
+         每回答完成一个问题 进入下一个问题
+         下一个问题的判断标准
+          1:是否存在逻辑控制
+          2：是否存在排序
+          3：默认排序
+          优先级从上到下
+          目前答案都是必填
+          根据输入的要求 保证在要求正确的情况下完成该题目
+
+
+          如果是常用问题 并且常用问题在一周内回答过那么该题目 直接显示常用问题的答案
+
+
+          如果该题目的后面题目已经有答案 那么回答该题目的时候会自动删除后面题目的答案
+
+
+          如果完成答题
+          判断是否进入下一题目
+          问卷是否结束
+               红包问卷
+
+
+          如果问卷结束
+          判断是否是红包问卷
+           1普通红包发放 总金额除以回收数量的结果
+                          2手气红包：随机发放金额
+                          跳转到领取红包页面=>
+
+          普通问卷直接结束=> 跳转到分享页面
+
+          判断是否达到回收数量（如果达到就结束问卷）
+
+          问卷结束是否是红包问卷 如果是那么返回相关的余额给问卷发布者
+
+          分享问卷后设置相关的url参数标准是否是分享的
+
+          定时服务（后端运行）每隔一段时间会监测是否有用户回答的答案已经过期 并且 删除相关的答案
+
+
+
+   2：发布问卷
+          输入问卷的标题和描述 进行问卷的创建
+          创建问卷后开始创建问卷的内容（问题）
+          问题包括（一般问题----【单选题，多选题，填空题，评分题，排序题】 和常见问题（常见问题在后台数据中进行相关的配置））
+          根据要求创建相关的问题
+          创建问卷的过程中包括（问卷预览、排序、逻辑控制等）
+          排序修改questionnaire中 sort_question 字段
+          单选题和多选题才有逻辑控制 用来控制问题的跳转和结束等
+
+          创建的问题能够进行修改
+          问题中的问题当题型修改时该题目以前的答案全部删除（防止统计结果不正确）
+
+     3：我的问卷
+          我的问卷页面是自己发布的问卷 可能结束和发布问卷 删除修改问卷等
+          设置红包问卷（普通红包和手气红包 根据相关的要求进行设置）
+          结束问卷后 如果有余额进行退回
+     4：我的红包
+          我领取的红包记录
+          如果是分享和推广的红包当红包金额累计大于等于1元时候可以领取
+
+
+    其他功能点：
+        1：常见问题： （1）用户添加常见问题 后如果修改就变成普通问题
+                    （2） 如果没有自动回答该问题 那么用户需要回答该问题 并且保留该答案7天
+                    （3）常见问题地址问题、电话号码是不能修改的 比较特殊
+
+
+
+
+
+
+      自行发布发服务器 （js进行了压缩的处理）
+
+       1：meteor build /home/oliver/wj8/build
+       2  cd 路径
+       3  cd build/bundle/programs/server
+
+       4  export PORT=4000 MONGO_URL=mongodb://localhost:27017/wenjuanba  ROOT_URL=http://127.0.0.1 METEOR_ENV=production
+       5  node boot.js /home/oliver/wj8/build/bundle/programs/server/program.json   必须要带有这个参数  boot.js中 有如下代码 不然允许会报错
+          var serverJsonPath = path.resolve(process.argv[2]);
+          var serverDir = path.dirname(serverJsonPath);
+          var serverJson = JSON.parse(fs.readFileSync(serverJsonPath, ‘utf8’));
+
+
+      (如果用pm2启动程序的话 好像不能传递process.argv参数)
+
+      //修改boot.js的文件权限
+
+      目前解决办法 修改boot.js 代码
+      var serverJsonPath = path.resolve(process.env.serverpath);
+
+
+      //添加环境变量
+      export serverpath=/home/oliver/wj8/build/bundle/programs/server/program.json
+
+
+     //服务端api在server/wechatapi 文件中
+            主要用来处理微信相关的业务
+     //客户端api在lib/router.js
+           处理问卷业务
+
+
+
+
+      数据库结果请查阅 database文件
+
+      下面是需要建立索引的内容
+      索引设置
+
+          //用户表
+          db.users.ensureIndex({'openId':1})
+
+
+          //问卷表
+          db.questionnaires.ensureIndex({'openId':1,'status':1,'level':1})
+
+          //问题表
+          db.questions.ensureIndex({'questionnaire_id':1,})
+
+          //答案表
+           db.answers.ensureIndex({'question_id':1,'questionnaire_id':1,openId:1})
+
+          //用户答题表
+           db.useranswers.ensureIndex({'questionnaire_id':1,'openId':1,'complete':true,''})
+
+
+          //分享被点击
+           db.shareclicks.ensureIndex({'shareopenid':1,'clickopenId':1,'questionnaire_id':1})
+
+          //分享被完成回答
+           db.sharecompletes.ensureIndex({'shareopenid':1,'completeopenId':1,'questionnaire_id':1})
+
+
+          //回答问题获取的红包记录
+           db.answerreds.ensureIndex({'openId':1,'questionnaire_id':1})
+
+          //提现记录
+           db.sharemoneys.ensureIndex({'openId':1})
+
+
+          //推广二维码
+           db.qrcodes.ensureIndex({'openId':1})
+
+
+
+
+
+微信公众号的相关配置
+
+
+设置菜单
+http://v.wenjuanba.com/api/setmenu
+
+  直接访问就可以设置好相关的菜单
+
+
+下面的需要在微信公众号里面设置
+
+基本配置url地址
+http://v.wenjuanba.com/api/weixin
+
+js配置修改 域名
+v.wenjuanba.com
+
+微信支付设置
+http://v.wenjuanba.com/user/
+http://v.wenjuanba.com/user/questionred/
+
+
+
+
+
+
+
+
+
